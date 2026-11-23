@@ -66,7 +66,7 @@ fbq('track', 'PageView');
   cta.href = url.toString();
   cta.addEventListener('click', function (e) {
     e.preventDefault();
-    try { fbq('track', 'Lead'); } catch (_) {}
+    try { fbq('track', 'InitiateCheckout'); } catch (_) {}
     setTimeout(function () { location.href = cta.href; }, 300);
   });
 })();
