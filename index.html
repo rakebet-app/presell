@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crie sua conta</title>
+<meta name="robots" content="noindex">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1548769563943170');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1548769563943170&ev=PageView&noscript=1"/></noscript>
+
+<style>
+  :root{--bg:#0b0f17;--card:#141a26;--line:#253049;--text:#eef2f8;--muted:#8b97ad;--accent:#22c55e;--accent2:#16a34a}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;
+       background:var(--bg);color:var(--text);
+       font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;
+       background:url(img/pessoa-comemorando.jpg) center/cover no-repeat;filter:blur(6px);transform:scale(1.05)}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;
+       background:linear-gradient(180deg,rgba(11,15,23,.78) 0%,rgba(11,15,23,.92) 60%,var(--bg) 100%)}
+  .card{width:100%;max-width:420px;text-align:center}
+  .hero{width:100%;max-width:340px;height:auto;aspect-ratio:1/1;border-radius:16px;object-fit:cover;display:block;margin:0 auto 20px;
+        background:var(--card);border:1px solid var(--line)}
+  .hero:not([src]),.hero[src=""]{display:none}
+  h1{margin:0 0 8px;font-size:26px;line-height:1.2}
+  p.sub{margin:0 0 24px;color:var(--muted);font-size:16px}
+  a.cta{display:flex;align-items:center;justify-content:center;width:100%;height:60px;border-radius:14px;
+        background:linear-gradient(180deg,var(--accent),var(--accent2));color:#fff;font-size:19px;font-weight:800;
+        letter-spacing:.4px;text-decoration:none;box-shadow:0 10px 28px rgba(34,197,94,.3);
+        animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  @media (prefers-reduced-motion:reduce){a.cta{animation:none}}
+  .safe{margin-top:14px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<main class="card">
+  <img class="hero" src="img/celular-premio.jpg" alt="" width="900" height="900" fetchpriority="high">
+  <h1>Crie sua conta em 1 minuto</h1>
+  <p class="sub">Cadastro rápido e seguro.</p>
+  <a id="cta" class="cta" href="https://pimba.io/?action=open_register">CRIAR MINHA CONTA</a>
+  <div class="safe">🔒 Ambiente 100% seguro</div>
+</main>
+
+<script>
+(function () {
+  var DEST = 'https://pimba.io/?action=open_register';
+  // Parâmetros de rastreio da URL da presell repassados ao destino
+  var PASSTHROUGH = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','promo_ph','fbclid','src','sck'];
+
+  var url = new URL(DEST);
+  var here = new URLSearchParams(location.search);
+  PASSTHROUGH.forEach(function (k) { if (here.get(k)) url.searchParams.set(k, here.get(k)); });
+
+  var cta = document.getElementById('cta');
+  cta.href = url.toString();
+  cta.addEventListener('click', function (e) {
+    e.preventDefault();
+    try { fbq('track', 'Lead'); } catch (_) {}
+    setTimeout(function () { location.href = cta.href; }, 300);
+  });
+})();
+</script>
+</body>
+</html>
